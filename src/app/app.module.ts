@@ -1,11 +1,13 @@
 import {BrowserModule} from '@angular/platform-browser';
-import {NgModule} from '@angular/core';
+import {Component, NgModule} from '@angular/core';
 import {AppComponent} from './app.component';
 import {HomeComponent} from './home/home.component';
 import {HeaderComponent} from './header/header.component';
 import {ContactComponent} from './contact/contact.component';
 import {RouterModule, Routes} from '@angular/router';
 import {BookingComponent} from './booking/booking.component';
+import {RegisterComponent} from './register/register.component';
+import {LoginComponent} from './login/login.component';
 
 const routes: Routes = [{
   component: HomeComponent,
@@ -20,6 +22,12 @@ const routes: Routes = [{
 }, {
   component: BookingComponent,
   path: 'booking'
+}, {
+  component: RegisterComponent,
+  path: 'register'
+}, {
+  component: LoginComponent,
+  path: 'login'
 }];
 
 @NgModule({
@@ -27,7 +35,9 @@ const routes: Routes = [{
     AppComponent,
     HomeComponent,
     HeaderComponent,
-    ContactComponent
+    ContactComponent,
+    RegisterComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
