@@ -5,6 +5,7 @@ import {HomeComponent} from './home/home.component';
 import {HeaderComponent} from './header/header.component';
 import {ContactComponent} from './contact/contact.component';
 import {RouterModule, Routes} from '@angular/router';
+import {BookingComponent} from './booking/booking.component';
 
 const routes: Routes = [{
   component: HomeComponent,
@@ -13,6 +14,12 @@ const routes: Routes = [{
   path: '',
   redirectTo: '/home',
   pathMatch: 'full'
+}, {
+  component: ContactComponent,
+  path: 'contact'
+}, {
+  component: BookingComponent,
+  path: 'booking'
 }];
 
 @NgModule({
