@@ -37,7 +37,8 @@ const routes: Routes = [{
     HeaderComponent,
     ContactComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    BookingComponent
   ],
   imports: [
     BrowserModule,
