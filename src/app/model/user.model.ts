@@ -2,7 +2,7 @@ export class User {
   id?: number;
   username: string;
   password: string;
-  role: string;
+  role?: string;
 
   constructor(id: number, username: string, password: string, role: string) {
     this.id = id;
@@ -11,3 +11,4 @@ export class User {
     this.role = role;
   }
 }
+

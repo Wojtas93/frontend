@@ -1,28 +1,41 @@
-<form>
-  <div>
-    <label>
-      Username: <input type="text" class="form-control">
-    </label>
-  </div>
-  <div>
-    <label>
-      First Name: <input type="text" class="form-control">
-    </label>
-  </div>
-  <div>
-    <label>
-      Last Name: <input type="text" class="form-control">
-    </label>
-  </div>
-  <div>
-    <label>
-      Password: <input type="password" class="form-control">
-    </label>
-  </div>
-  <div>
-    <label>
-      Repeat Password: <input type="password" class="form-control">
-    </label>
-  </div>
+<!--<form (ngSubmit)="create()">-->
+<!--  <div>-->
+<!--    <label>-->
+<!--      Username: <input type="text" class="form-control" [(ngModel)]="user.username">-->
+<!--    </label>-->
+<!--  </div>-->
+<!--  <div>-->
+<!--    <label>-->
+<!--      First Name: <input type="text" class="form-control">-->
+<!--    </label>-->
+<!--  </div>-->
+<!--  <div>-->
+<!--    <label>-->
+<!--      Last Name: <input type="text" class="form-control">-->
+<!--    </label>-->
+<!--  </div>-->
+<!--  <div>-->
+<!--    <label>-->
+<!--      Password: <input type="password" class="form-control" [(ngModel)]="user.password">-->
+<!--    </label>-->
+<!--  </div>-->
+<!--  <div>-->
+<!--    <label>-->
+<!--      Confirm Password: <input type="password" class="form-control">-->
+<!--    </label>-->
+<!--  </div>-->
+<!--  <input type="submit" value="Register">-->
+<!--</form>-->
+<h1>Register new user!</h1>
+<form (ngSubmit)="create()">
+  <label>
+    Username: <input type="text" name="username" [(ngModel)]="user.username">
+  </label>
+  <label>
+    Password: <input type="password" name="password" [(ngModel)]="user.password">
+  </label>
+<!--  <label>-->
+<!--    Role: <input type="password" name="password" [(ngModel)]="user.role">-->
+<!--  </label>-->
   <input type="submit" value="Register">
 </form>

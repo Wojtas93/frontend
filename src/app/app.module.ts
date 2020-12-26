@@ -1,5 +1,5 @@
 import {BrowserModule} from '@angular/platform-browser';
-import {NgModule} from '@angular/core';
+import {Component, NgModule} from '@angular/core';
 import {AppComponent} from './app.component';
 import {HomeComponent} from './home/home.component';
 import {HeaderComponent} from './header/header.component';
@@ -8,6 +8,8 @@ import {RouterModule, Routes} from '@angular/router';
 import {BookingComponent} from './booking/booking.component';
 import {RegisterComponent} from './register/register.component';
 import {LoginComponent} from './login/login.component';
+import {FormsModule} from '@angular/forms';
+import {HttpClientModule} from '@angular/common/http';
 
 const routes: Routes = [{
   component: HomeComponent,
@@ -37,15 +39,17 @@ const routes: Routes = [{
     HeaderComponent,
     ContactComponent,
     RegisterComponent,
-    LoginComponent,
-    BookingComponent
+    LoginComponent
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule {
 }
+
