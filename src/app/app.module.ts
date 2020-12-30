@@ -8,6 +8,7 @@ import {RouterModule, Routes} from '@angular/router';
 import {BookingComponent} from './booking/booking.component';
 import {RegisterComponent} from './register/register.component';
 import {LoginComponent} from './login/login.component';
+import {FormsModule} from '@angular/forms';
 
 const routes: Routes = [{
   component: HomeComponent,
@@ -42,7 +43,8 @@ const routes: Routes = [{
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
