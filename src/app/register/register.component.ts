@@ -8,12 +8,16 @@ import {HttpClient} from '@angular/common/http';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-  private url = 'http://localhost:8080/user';
   users: User[] = [];
   user: User = {
-    username: '',
+    firstname: '',
+    lastname: '',
     password: '',
+    role: '',
+    username: ''
   };
+  passwordConfirm: string;
+  private url = 'http://localhost:8080/user';
 
   constructor(private httpClient: HttpClient) {
   }
@@ -28,10 +32,8 @@ export class RegisterComponent implements OnInit {
       .subscribe(users => this.users = users);
   }
 
-  create(): void {
+  onSubmit(): void {
     this.httpClient.post<User>(this.url, this.user)
       .subscribe(() => this.loadData());
   }
-
-
 }
