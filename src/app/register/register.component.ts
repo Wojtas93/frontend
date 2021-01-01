@@ -8,7 +8,6 @@ import {HttpClient} from '@angular/common/http';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-  users: User[] = [];
   user: User = {
     firstname: '',
     lastname: '',
@@ -24,16 +23,10 @@ export class RegisterComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.loadData();
-  }
-
-  private loadData(): void {
-    this.httpClient.get<User[]>(this.url)
-      .subscribe(users => this.users = users);
   }
 
   onSubmit(): void {
     this.httpClient.post<User>(this.url, this.user)
-      .subscribe(() => this.loadData());
+      .subscribe(() => alert('User created'));
   }
 }
