@@ -10,6 +10,7 @@ import {RegisterComponent} from './register/register.component';
 import {LoginComponent} from './login/login.component';
 import {FormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
+import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 
 const routes: Routes = [{
   component: HomeComponent,
@@ -46,7 +47,8 @@ const routes: Routes = [{
     BrowserModule,
     RouterModule.forRoot(routes),
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]
