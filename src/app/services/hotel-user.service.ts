@@ -11,7 +11,7 @@ export class HotelUserService {
   constructor(private httpClient: HttpClient) {
   }
 
-  url = 'http://localhost:8080/hotel/user';
+  url = 'http://localhost:8080/user';
 
   getAll(): Observable<User[]> {
     return this.httpClient.get<User[]>(this.url);
