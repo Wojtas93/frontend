@@ -9,23 +9,28 @@ import {LoginComponent} from '../login/login.component';
 
 const routes: Routes = [{
   component: HomeComponent,
-  path: 'home'
+  path: 'home',
+  pathMatch: 'full'
 }, {
   path: '',
   redirectTo: '/home',
   pathMatch: 'full'
 }, {
   component: ContactComponent,
-  path: 'contact'
+  path: 'contact',
+  pathMatch: 'full'
 }, {
   component: BookingComponent,
-  path: 'booking'
+  path: 'booking',
+  pathMatch: 'full'
 }, {
   component: RegisterComponent,
-  path: 'register'
+  path: 'register',
+  pathMatch: 'full'
 }, {
   component: LoginComponent,
-  path: 'login'
+  path: 'login',
+  pathMatch: 'full'
 }];
 
 
