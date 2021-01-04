@@ -12,3 +12,9 @@ from = "/home"
 to = "/"
 status = 200
 force = true # COMMENT: ensure that we always redirect
+
+[[redirects]]
+from = "/login"
+to = "https://hotel-project-team.netlify.app/login"
+status = 200
+force = true # COMMENT: ensure that we always redirect
