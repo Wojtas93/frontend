@@ -1,13 +1,26 @@
-<form>
-  <div>
-    <label>
-      Username: <input type="text" class="form-control">
-    </label>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-8">
+      <form #userLoginForm="ngForm" (ngSubmit)="onSubmit()" method="post">
+        <div class="form-group">
+          <label>
+            Username: <input type="text" class="form-control" name="username" id="username" [(ngModel)]="user.username"
+                             #username="ngModel" required>
+          </label>
+        </div>
+        <div class="form-group">
+          <label>
+            Password: <input type="password" class="form-control" name="password" id="password"
+                             [(ngModel)]="user.password" #password="ngModel" required>
+          </label>
+        </div>
+        <div class="form-group">
+        <button type="submit" value="login" class="btn btn-primary"
+                [disabled]="!userLoginForm.form.valid || !username.valid || !password.valid">
+          Login
+        </button>
+        </div>
+      </form>
+    </div>
   </div>
-  <div>
-    <label>
-      Password: <input type="password" class="form-control">
-    </label>
-  </div>
-  <input type="submit" value="Log in">
-</form>
+</div>
