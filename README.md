@@ -1,8 +1,11 @@
 # Frontend
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.4.
+
 Additional dependencies: Bootstrap 4
+
 Deployed in: www.hotel-project-team.netlify.app
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
