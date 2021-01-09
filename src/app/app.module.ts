@@ -11,6 +11,7 @@ import {FormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {RoutingModule} from './routing/routing.module';
+import {DatePipe} from '@angular/common';
 
 
 @NgModule({
@@ -30,7 +31,7 @@ import {RoutingModule} from './routing/routing.module';
     FontAwesomeModule,
     RoutingModule
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule {
