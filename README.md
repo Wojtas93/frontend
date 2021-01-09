@@ -4,7 +4,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 Additional dependencies: Bootstrap 4
 
-Deployed in: www.hotel-project-team.netlify.app
+Deployed in: https://hotel-project-team.netlify.app
 
 ## Development server
 
