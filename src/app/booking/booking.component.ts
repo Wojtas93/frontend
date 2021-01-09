@@ -28,9 +28,4 @@ export class BookingComponent implements OnInit {
   onSubmit(): void {
     alert('Booking add / not implemented yet');
   }
-
-  getDate(): any {
-
-    return;
-  }
 }
