@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {User} from '../model/user.model';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {HotelUserService} from '../services/hotel-user.service';
+import {ErrorMessage} from '../model/error-message.model';
 
 @Component({
   selector: 'app-register',
@@ -10,6 +11,7 @@ import {HotelUserService} from '../services/hotel-user.service';
 })
 export class RegisterComponent implements OnInit {
   userRegisterForm: FormGroup;
+  errorMessage: ErrorMessage[];
 
   constructor(private httpService: HotelUserService) {
   }
@@ -32,12 +34,18 @@ export class RegisterComponent implements OnInit {
 
   onSubmit(): void {
     const user: User = {
-      firstname: this.userRegisterForm.value.firstname,
-      lastname: this.userRegisterForm.value.lastname,
+      firstName: this.userRegisterForm.value.firstname,
+      lastName: this.userRegisterForm.value.lastname,
       email: this.userRegisterForm.value.email,
       password: this.userRegisterForm.value.password,
       role: 'USER',
-      username: this.userRegisterForm.value.username
+      username: this.userRegisterForm.value.username,
+      creditCard: null
     };
+    this.httpService.addUser(user).subscribe(() => alert('User created'),
+      errorResponse => {
+        this.errorMessage = errorResponse;
+        alert(this.errorMessage);
+      });
   }
 }
