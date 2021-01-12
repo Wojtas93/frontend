@@ -11,7 +11,7 @@ import {ErrorMessage} from '../model/error-message.model';
 })
 export class RegisterComponent implements OnInit {
   userRegisterForm: FormGroup;
-  errorMessage: ErrorMessage[];
+  validationErrors: ErrorMessage = {};
 
   constructor(private httpService: HotelUserService) {
   }
@@ -44,8 +44,8 @@ export class RegisterComponent implements OnInit {
     };
     this.httpService.addUser(user).subscribe(() => alert('User created'),
       errorResponse => {
-        this.errorMessage = errorResponse;
-        alert(this.errorMessage);
+        this.validationErrors = errorResponse;
+        alert('Coś poszło nie tak!');
       });
   }
 }
