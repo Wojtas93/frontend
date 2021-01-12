@@ -1,63 +1,43 @@
 <div class="container-fluid">
   <div class="form-row">
     <div class="col-8">
-      <form #userRegisterForm="ngForm" (ngSubmit)="onSubmit()" method="post">
+      <form [formGroup]="userRegisterForm" (ngSubmit)="onSubmit()">
         <div class="form-group">
           <label>
-            Username: <input type="text" class="form-control" name="username" id="username"
-                             [(ngModel)]="user.username" #username="ngModel" required>
+            Username: <input type="text" class="form-control" formControlName="username" name="username" id="username">
           </label>
-          <div [hidden]="username.valid || username.pristine"
-               class="alert alert-danger">
-            Property is required
-          </div>
         </div>
         <div class="form-group">
           <div>
             <label>
-              First Name: <input type="text" class="form-control" name="firstname" [(ngModel)]="user.firstname"
-                                 #firstname="ngModel" required>
+              First Name: <input type="text" class="form-control" formControlName="firstname" name="firstname">
             </label>
-            <div [hidden]="firstname.valid || firstname.pristine"
-                 class="alert alert-danger">
-              Property is required
-            </div>
           </div>
           <div>
             <label>
-              Last Name: <input type="text" class="form-control" name="lastname" [(ngModel)]="user.lastname"
-                                #lastname="ngModel" required>
+              Last Name: <input type="text" class="form-control" formControlName="lastname" name="lastname">
             </label>
-            <div [hidden]="lastname.valid || lastname.pristine"
-                 class="alert alert-danger">
-              Property is required
-            </div>
+          </div>
+          <div>
+            <label>
+              E-mail: <input type="text" class="form-control" formControlName="email" name="email">
+            </label>
           </div>
         </div>
         <div class="form-group">
           <label>
-            Password: <input type="password" class="form-control" name="password" [(ngModel)]="user.password"
-                             #password="ngModel" required>
+            Password: <input type="password" class="form-control" formControlName="password" name="password">
           </label>
-          <div [hidden]="password.valid || password.pristine"
-               class="alert alert-danger">
-            Property is required
-          </div>
           <div>
             <label>
-              Confirm password: <input type="password" class="form-control" name="passwordConfirm"
-                                       [(ngModel)]="passwordConfirm" required>
+              Confirm password: <input type="password" class="form-control" formControlName="passwordConfirm"
+                                       name="passwordConfirm">
             </label>
-            <div [hidden]="(password.value == passwordConfirm) || password.pristine"
-                 class="alert alert-danger">
-              Passwords didnt match
-            </div>
           </div>
         </div>
         <div class="form-group">
           <div>
-            <button type="submit" class="btn btn-primary"
-                    [disabled]="!userRegisterForm.form.valid || !(password.value == passwordConfirm)">
+            <button type="submit" class="btn btn-primary">
               Sign In
             </button>
           </div>

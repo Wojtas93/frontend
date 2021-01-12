@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {User} from '../model/user.model';
-import {HttpClient} from '@angular/common/http';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {HotelUserService} from '../services/hotel-user.service';
 
 @Component({
   selector: 'app-register',
@@ -8,25 +9,35 @@ import {HttpClient} from '@angular/common/http';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-  user: User = {
-    firstname: '',
-    lastname: '',
-    password: '',
-    role: '',
-    username: ''
-  };
-  passwordConfirm: string;
-  private url = 'http://localhost:8080/user';
+  userRegisterForm: FormGroup;
 
-  constructor(private httpClient: HttpClient) {
+  constructor(private httpService: HotelUserService) {
   }
 
 
   ngOnInit(): void {
+    this.formController();
+  }
+
+  private formController(): void {
+    this.userRegisterForm = new FormGroup({
+      username: new FormControl(null, Validators.required),
+      firstname: new FormControl(null, Validators.required),
+      email: new FormControl(null, [Validators.required, Validators.email]),
+      lastname: new FormControl(null, Validators.required),
+      password: new FormControl(null, Validators.required),
+      passwordConfirm: new FormControl(null, Validators.required)
+    });
   }
 
   onSubmit(): void {
-    this.httpClient.post<User>(this.url, this.user)
-      .subscribe(() => alert('User created'));
+    const user: User = {
+      firstname: this.userRegisterForm.value.firstname,
+      lastname: this.userRegisterForm.value.lastname,
+      email: this.userRegisterForm.value.email,
+      password: this.userRegisterForm.value.password,
+      role: 'USER',
+      username: this.userRegisterForm.value.username
+    };
   }
 }

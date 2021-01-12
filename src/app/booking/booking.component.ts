@@ -11,7 +11,7 @@ import {DatePipe} from '@angular/common';
 export class BookingComponent implements OnInit {
   reservation: Reservation = {
     endDate: 0,
-    guest: new User('', '', '', '', ''),
+    guest: new User('', '', '', '', '', ''),
     isPaid: false,
     room: '',
     startDate: 0
