@@ -3,6 +3,7 @@ import {User} from '../model/user.model';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {HotelUserService} from '../services/hotel-user.service';
 import {ErrorMessage} from '../model/error-message.model';
+import {CustomValidators} from './custom-validators/custom-validators';
 
 @Component({
   selector: 'app-register',
@@ -27,8 +28,16 @@ export class RegisterComponent implements OnInit {
       firstname: new FormControl(null, Validators.required),
       email: new FormControl(null, [Validators.required, Validators.email]),
       lastname: new FormControl(null, Validators.required),
-      password: new FormControl(null, Validators.required),
-      passwordConfirm: new FormControl(null, Validators.required)
+      password: new FormControl(null, Validators.compose([
+        Validators.minLength(8),
+        CustomValidators.patternValidator(/\d/, {hasNumber: true}),
+        CustomValidators.patternValidator(/[A-Z]/, {hasCapitalCase: true}),
+        CustomValidators.patternValidator(/[a-z]/, {hasSmallCase: true}),
+        CustomValidators.patternValidator(/^$/, {isNotEmpty: true})
+      ])),
+      passwordConfirm: new FormControl(null, Validators.compose([
+        Validators.required
+      ]))
     });
   }
 

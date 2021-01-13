@@ -29,9 +29,84 @@
             Password: <input type="password" class="form-control" formControlName="password" name="password">
           </label>
           <div>
-            <label>
-              Confirm password: <input type="password" class="form-control" formControlName="passwordConfirm"
-                                       name="passwordConfirm">
+            <label
+              *ngIf="userRegisterForm.controls['password'].touched"
+              [ngClass]="!userRegisterForm.controls['password']
+                .hasError('isNotEmpty') ||
+              userRegisterForm.controls['password']
+              .hasError('minlength')
+              ? 'text-danger' : 'text-success'"
+            >
+              <i class="material-icons">
+                {{ !userRegisterForm.controls['password']
+                .hasError('isNotEmpty') ||
+              userRegisterForm.controls['password']
+                .hasError('minlength') ? 'cancel' : 'check_circle' }}
+              </i>
+              Must be at least 8 characters!
+            </label>
+          </div>
+          <div>
+            <label class="form-group"
+                   *ngIf="userRegisterForm.controls['password'].touched"
+                   [ngClass]="!userRegisterForm.controls['password']
+                .hasError('isNotEmpty') ||
+              userRegisterForm.controls['password']
+              .hasError('hasNumber')  ? 'text-danger' : 'text-success'"
+            >
+              <i class="material-icons">
+                {{ !userRegisterForm.controls['password']
+                .hasError('isNotEmpty') ||
+              userRegisterForm.controls['password']
+                .hasError('hasNumber') ? 'cancel' : 'check_circle' }}
+              </i>
+              Must contain at least 1 number!
+            </label>
+          </div>
+          <div>
+            <label class="form-group"
+                   *ngIf="userRegisterForm.controls['password'].touched"
+                   [ngClass]="!userRegisterForm.controls['password']
+                .hasError('isNotEmpty') ||
+              userRegisterForm.controls['password']
+              .hasError('hasCapitalCase')  ? 'text-danger' : 'text-success'"
+            >
+              <i class="material-icons">
+                {{ !userRegisterForm.controls['password']
+                .hasError('isNotEmpty') ||
+              userRegisterForm.controls['password']
+                .hasError('hasCapitalCase') ? 'cancel' : 'check_circle' }}
+              </i>
+              Must contain at least 1 in Capital Case!
+            </label>
+          </div>
+          <div>
+            <label class="form-group"
+                   *ngIf="userRegisterForm.controls['password'].touched"
+                   [ngClass]="!userRegisterForm.controls['password']
+                .hasError('isNotEmpty') ||
+              userRegisterForm.controls['password']
+              .hasError('hasSmallCase')  ? 'text-danger' : 'text-success'"
+            >
+              <i class="material-icons">
+                {{ !userRegisterForm.controls['password']
+                .hasError('isNotEmpty') ||
+              userRegisterForm.controls['password']
+                .hasError('hasSmallCase') ? 'cancel' : 'check_circle' }}
+              </i>
+              Must contain at least 1 Letter in Small Case!
+            </label>
+          </div>
+          <label>
+            Confirm password: <input type="password" class="form-control" formControlName="passwordConfirm"
+                                     name="passwordConfirm">
+          </label>
+          <div>
+            <label class="text-danger"
+                   *ngIf="userRegisterForm.controls['passwordConfirm']
+              .hasError('NoPasswordMatch')"
+            >
+              Password does not match
             </label>
           </div>
         </div>
