@@ -35,9 +35,7 @@ export class RegisterComponent implements OnInit {
         CustomValidators.patternValidator(/[a-z]/, {hasSmallCase: true}),
         CustomValidators.patternValidator(/^$/, {isNotEmpty: true})
       ])),
-      passwordConfirm: new FormControl(null, Validators.compose([
-        Validators.required
-      ]))
+      passwordConfirm: new FormControl(null, Validators.required)
     });
   }
 
@@ -54,7 +52,7 @@ export class RegisterComponent implements OnInit {
     this.httpService.addUser(user).subscribe(() => alert('User created'),
       errorResponse => {
         this.validationErrors = errorResponse;
-        alert('Coś poszło nie tak!');
+        alert('Something went wrong!');
       });
   }
 }
