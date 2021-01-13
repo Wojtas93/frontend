@@ -30,12 +30,15 @@ export class RegisterComponent implements OnInit {
       lastname: new FormControl(null, Validators.required),
       password: new FormControl(null, Validators.compose([
         Validators.minLength(8),
-        CustomValidators.patternValidator(/\d/, {hasNumber: true}),
-        CustomValidators.patternValidator(/[A-Z]/, {hasCapitalCase: true}),
-        CustomValidators.patternValidator(/[a-z]/, {hasSmallCase: true}),
+        CustomValidators.patternValidator(/.*\d.*/, {hasNumber: true}),
+        CustomValidators.patternValidator(/.*[A-Z].*/, {hasCapitalCase: true}),
+        CustomValidators.patternValidator(/.*[a-z].*/, {hasSmallCase: true}),
         CustomValidators.patternValidator(/^$/, {isNotEmpty: true})
       ])),
-      passwordConfirm: new FormControl(null, Validators.required)
+      passwordConfirm: new FormControl(null, Validators.compose([
+        Validators.required,
+        CustomValidators.patternValidator(/^$/, {isNotEmpty: true})
+      ]))
     });
   }
 
@@ -51,8 +54,42 @@ export class RegisterComponent implements OnInit {
     };
     this.httpService.addUser(user).subscribe(() => alert('User created'),
       errorResponse => {
-        this.validationErrors = errorResponse;
+        this.validationErrors = errorResponse.error;
         alert('Something went wrong!');
       });
+  }
+
+  passwordHasEightCharacters(): boolean {
+    return this.userRegisterForm.controls.password.hasError('isNotEmpty') &&
+      !this.userRegisterForm.controls.password.hasError('minlength');
+  }
+
+  passwordHasNumber(): boolean {
+    return this.userRegisterForm.controls.password.hasError('isNotEmpty') &&
+      !this.userRegisterForm.controls.password.hasError('hasNumber');
+  }
+
+  passwordHasCapitalLetter(): boolean {
+    return this.userRegisterForm.controls.password.hasError('isNotEmpty') &&
+      !this.userRegisterForm.controls.password.hasError('hasCapitalCase');
+  }
+
+  passwordHasSmallLetter(): boolean {
+    return this.userRegisterForm.controls.password.hasError('isNotEmpty') &&
+      !this.userRegisterForm.controls.password.hasError('hasSmallCase');
+  }
+
+  passwordAreIdentical(): boolean {
+    return this.userRegisterForm.controls.password.value === this.userRegisterForm.controls.passwordConfirm.value
+      && this.userRegisterForm.controls.password.hasError('isNotEmpty');
+  }
+
+  passwordIsValid(): boolean {
+    return this.passwordHasEightCharacters() && this.passwordHasNumber() &&
+      this.passwordHasCapitalLetter() && this.passwordHasSmallLetter();
+  }
+
+  formIsValid(): boolean {
+    return this.passwordIsValid() && this.passwordAreIdentical();
   }
 }
