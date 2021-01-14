@@ -1,6 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {User} from '../model/user.model';
-import {HttpClient} from '@angular/common/http';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {HotelUserService} from '../services/hotel-user.service';
+import {ErrorMessage} from '../model/error-message.model';
+import {CustomValidators} from './custom-validators/custom-validators';
 
 @Component({
   selector: 'app-register',
@@ -8,25 +11,85 @@ import {HttpClient} from '@angular/common/http';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-  user: User = {
-    firstname: '',
-    lastname: '',
-    password: '',
-    role: '',
-    username: ''
-  };
-  passwordConfirm: string;
-  private url = 'http://localhost:8080/user';
+  userRegisterForm: FormGroup;
+  validationErrors: ErrorMessage = {};
 
-  constructor(private httpClient: HttpClient) {
+  constructor(private httpService: HotelUserService) {
   }
 
 
   ngOnInit(): void {
+    this.formController();
+  }
+
+  private formController(): void {
+    this.userRegisterForm = new FormGroup({
+      username: new FormControl(null, Validators.required),
+      firstname: new FormControl(null, Validators.required),
+      email: new FormControl(null, [Validators.required, Validators.email]),
+      lastname: new FormControl(null, Validators.required),
+      password: new FormControl(null, Validators.compose([
+        Validators.minLength(8),
+        CustomValidators.patternValidator(/.*\d.*/, {hasNumber: true}),
+        CustomValidators.patternValidator(/.*[A-Z].*/, {hasCapitalCase: true}),
+        CustomValidators.patternValidator(/.*[a-z].*/, {hasSmallCase: true}),
+        CustomValidators.patternValidator(/^$/, {isNotEmpty: true})
+      ])),
+      passwordConfirm: new FormControl(null, Validators.compose([
+        Validators.required,
+        CustomValidators.patternValidator(/^$/, {isNotEmpty: true})
+      ]))
+    });
   }
 
   onSubmit(): void {
-    this.httpClient.post<User>(this.url, this.user)
-      .subscribe(() => alert('User created'));
+    const user: User = {
+      firstName: this.userRegisterForm.value.firstname,
+      lastName: this.userRegisterForm.value.lastname,
+      email: this.userRegisterForm.value.email,
+      password: this.userRegisterForm.value.password,
+      role: 'USER',
+      username: this.userRegisterForm.value.username,
+      creditCard: null
+    };
+    this.httpService.addUser(user).subscribe(() => alert('User created'),
+      errorResponse => {
+        this.validationErrors = errorResponse.error;
+        alert('Something went wrong!');
+      });
+  }
+
+  passwordHasEightCharacters(): boolean {
+    return this.userRegisterForm.controls.password.hasError('isNotEmpty') &&
+      !this.userRegisterForm.controls.password.hasError('minlength');
+  }
+
+  passwordHasNumber(): boolean {
+    return this.userRegisterForm.controls.password.hasError('isNotEmpty') &&
+      !this.userRegisterForm.controls.password.hasError('hasNumber');
+  }
+
+  passwordHasCapitalLetter(): boolean {
+    return this.userRegisterForm.controls.password.hasError('isNotEmpty') &&
+      !this.userRegisterForm.controls.password.hasError('hasCapitalCase');
+  }
+
+  passwordHasSmallLetter(): boolean {
+    return this.userRegisterForm.controls.password.hasError('isNotEmpty') &&
+      !this.userRegisterForm.controls.password.hasError('hasSmallCase');
+  }
+
+  passwordAreIdentical(): boolean {
+    return this.userRegisterForm.controls.password.value === this.userRegisterForm.controls.passwordConfirm.value
+      && this.userRegisterForm.controls.password.hasError('isNotEmpty');
+  }
+
+  passwordIsValid(): boolean {
+    return this.passwordHasEightCharacters() && this.passwordHasNumber() &&
+      this.passwordHasCapitalLetter() && this.passwordHasSmallLetter();
+  }
+
+  formIsValid(): boolean {
+    return this.passwordIsValid() && this.passwordAreIdentical();
   }
 }

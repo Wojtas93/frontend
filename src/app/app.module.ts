@@ -7,10 +7,10 @@ import {ContactComponent} from './contact/contact.component';
 import {BookingComponent} from './booking/booking.component';
 import {RegisterComponent} from './register/register.component';
 import {LoginComponent} from './login/login.component';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
-import {RoutingModule} from './routing/routing.module';
+import {RoutingModule} from './modules/routing/routing.module';
 import {DatePipe} from '@angular/common';
 
 
@@ -27,6 +27,7 @@ import {DatePipe} from '@angular/common';
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     FontAwesomeModule,
     RoutingModule

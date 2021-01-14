@@ -1,63 +1,137 @@
 <div class="container-fluid">
   <div class="form-row">
     <div class="col-8">
-      <form #userRegisterForm="ngForm" (ngSubmit)="onSubmit()" method="post">
+      <form [formGroup]="userRegisterForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <div>
+            <label>
+              Username: <input type="text" class="form-control" formControlName="username" name="username"
+                               id="username">
+            </label>
+          </div>
+          <div class="errorDiv">
+            <div>
+              <span *ngFor="let error of validationErrors.firstName">
+                <i class="material-icons">cancel</i> {{error}}
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div>
+            <div>
+              <label>
+                First Name: <input type="text" class="form-control" formControlName="firstname" name="firstname">
+              </label>
+            </div>
+            <div class="errorDiv">
+              <div>
+              <span *ngFor="let error of validationErrors.firstName">
+                <i class="material-icons">cancel</i> {{error}}
+              </span>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div>
+              <label>
+                Last Name: <input type="text" class="form-control" formControlName="lastname" name="lastname">
+              </label>
+            </div>
+            <div class="errorDiv">
+              <div>
+              <span *ngFor="let error of validationErrors.lastName">
+                <i class="material-icons">cancel</i> {{error}}
+              </span>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div>
+              <label>
+                E-mail: <input type="text" class="form-control" formControlName="email" name="email">
+              </label>
+            </div>
+            <div class="errorDiv">
+              <div *ngIf="validationErrors.email !== null">
+              <span *ngFor="let error of validationErrors.email">
+                <i class="material-icons">cancel</i> {{error}}
+              </span>
+              </div>
+            </div>
+          </div>
+        </div>
         <div class="form-group">
           <label>
-            Username: <input type="text" class="form-control" name="username" id="username"
-                             [(ngModel)]="user.username" #username="ngModel" required>
+            Password: <input type="password" class="form-control" formControlName="password" name="password">
           </label>
-          <div [hidden]="username.valid || username.pristine"
-               class="alert alert-danger">
-            Property is required
-          </div>
-        </div>
-        <div class="form-group">
-          <div>
-            <label>
-              First Name: <input type="text" class="form-control" name="firstname" [(ngModel)]="user.firstname"
-                                 #firstname="ngModel" required>
-            </label>
-            <div [hidden]="firstname.valid || firstname.pristine"
-                 class="alert alert-danger">
-              Property is required
+          <div class="errorDiv">
+            <div>
+              <label
+                *ngIf="userRegisterForm.controls['password'].touched"
+                [ngClass]="passwordHasEightCharacters() ? 'text-success' : 'text-danger'"
+              >
+                <i class="material-icons">
+                  {{ passwordHasEightCharacters() ? 'check_circle' : 'cancel' }}
+                </i>
+                Must be at least 8 characters!
+              </label>
+            </div>
+            <div>
+              <label class="form-group"
+                     *ngIf="userRegisterForm.controls['password'].touched"
+                     [ngClass]="passwordHasNumber() ? 'text-success' : 'text-danger'">
+                <i class="material-icons">
+                  {{ passwordHasNumber() ? 'check_circle' : 'cancel' }}
+                </i>
+                Must contain at least 1 number!
+              </label>
+            </div>
+            <div>
+              <label class="form-group"
+                     *ngIf="userRegisterForm.controls['password'].touched"
+                     [ngClass]="passwordHasCapitalLetter() ? 'text-success' : 'text-danger'"
+              >
+                <i class="material-icons">
+                  {{ passwordHasCapitalLetter() ? 'check_circle' : 'cancel' }}
+                </i>
+                Must contain at least 1 in Capital Case!
+              </label>
+            </div>
+            <div>
+              <label class="form-group"
+                     *ngIf="userRegisterForm.controls['password'].touched"
+                     [ngClass]="passwordHasSmallLetter()  ? 'text-success' : 'text-danger'"
+              >
+                <i class="material-icons">
+                  {{ passwordHasSmallLetter() ? 'check_circle' : 'cancel' }}
+                </i>
+                Must contain at least 1 Letter in Small Case!
+              </label>
+            </div>
+            <div *ngIf="validationErrors.password !== null">
+              <span *ngFor="let error of validationErrors.password">
+                <i class="material-icons">cancel</i> {{error}}
+              </span>
             </div>
           </div>
-          <div>
-            <label>
-              Last Name: <input type="text" class="form-control" name="lastname" [(ngModel)]="user.lastname"
-                                #lastname="ngModel" required>
-            </label>
-            <div [hidden]="lastname.valid || lastname.pristine"
-                 class="alert alert-danger">
-              Property is required
-            </div>
-          </div>
-        </div>
-        <div class="form-group">
           <label>
-            Password: <input type="password" class="form-control" name="password" [(ngModel)]="user.password"
-                             #password="ngModel" required>
+            Confirm password: <input type="password" class="form-control" formControlName="passwordConfirm"
+                                     name="passwordConfirm">
           </label>
-          <div [hidden]="password.valid || password.pristine"
-               class="alert alert-danger">
-            Property is required
-          </div>
-          <div>
-            <label>
-              Confirm password: <input type="password" class="form-control" name="passwordConfirm"
-                                       [(ngModel)]="passwordConfirm" required>
-            </label>
-            <div [hidden]="(password.value == passwordConfirm) || password.pristine"
-                 class="alert alert-danger">
-              Passwords didnt match
+          <div class="errorDiv">
+            <div *ngIf="userRegisterForm.controls['passwordConfirm'].touched"
+                 [ngClass]="passwordAreIdentical() ? 'text-success' : 'text-danger'">
+              <i class="material-icons">
+                {{ passwordAreIdentical() ? 'check_circle' : 'cancel' }}
+              </i>
+              Must match with password property
             </div>
           </div>
         </div>
         <div class="form-group">
           <div>
-            <button type="submit" class="btn btn-primary"
-                    [disabled]="!userRegisterForm.form.valid || !(password.value == passwordConfirm)">
+            <button type="submit" class="btn btn-primary" [disabled]="!formIsValid()">
               Sign In
             </button>
           </div>
