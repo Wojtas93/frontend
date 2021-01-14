@@ -27,7 +27,10 @@ export class LoginComponent implements OnInit {
       username: this.userLoginForm.value.username,
       password: this.userLoginForm.value.password
     };
-    this.httpService.getUserByLogin(user.username).subscribe(() => alert('User logged'),
+    this.httpService.getUserByLogin(user.username).subscribe(() => {
+      this.errorBoolean = false;
+      alert('User logged');
+      },
       () => {
       this.errorBoolean = true;
       alert('Could not find user');
