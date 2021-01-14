@@ -10,7 +10,7 @@ import {LoginComponent} from './login/login.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
-import {RoutingModule} from './routing/routing.module';
+import {RoutingModule} from './modules/routing/routing.module';
 import {DatePipe} from '@angular/common';
 
 
