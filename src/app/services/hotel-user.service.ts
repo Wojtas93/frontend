@@ -24,8 +24,12 @@ export class HotelUserService {
     return this.httpClient.get<User[]>(this.url, this.httpOptions);
   }
 
-  addUser(user: User): Observable<User> {
-    return this.httpClient.post<User>(this.url + '/post', user, this.httpOptions);
+  getUserByLoginAndPassword(user: User): Observable<User> {
+    return this.httpClient.post<User>(this.url + '/login', user, this.httpOptions);
+  }
+
+  addUser(user: User): Observable<User[]> {
+    return this.httpClient.post<User[]>(this.url + '/post', user, this.httpOptions);
   }
 
   deleteUser(id: number): Observable<User> {
