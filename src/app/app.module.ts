@@ -8,10 +8,11 @@ import {BookingComponent} from './booking/booking.component';
 import {RegisterComponent} from './register/register.component';
 import {LoginComponent} from './login/login.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {RoutingModule} from './routing/routing.module';
 import {DatePipe} from '@angular/common';
+import {AuthInterceptor} from './interceptors/auth.interceptor';
 
 
 @NgModule({
@@ -32,7 +33,12 @@ import {DatePipe} from '@angular/common';
     FontAwesomeModule,
     RoutingModule
   ],
-  providers: [DatePipe],
+  providers: [DatePipe,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }],
   bootstrap: [AppComponent]
 })
 export class AppModule {
