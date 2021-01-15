@@ -13,7 +13,7 @@ import {CustomValidators} from './custom-validators/custom-validators';
 export class RegisterComponent implements OnInit {
   userRegisterForm: FormGroup;
   validationErrors: ErrorMessage = {};
-
+  isLoading = false;
   constructor(private httpService: HotelUserService) {
   }
 
@@ -52,10 +52,16 @@ export class RegisterComponent implements OnInit {
       username: this.userRegisterForm.value.username,
       creditCard: null
     };
-    this.httpService.addUser(user).subscribe(() => alert('User created'),
+    this.isLoading = true;
+    this.httpService.addUser(user).subscribe(() => {
+        alert('User created');
+        this.userRegisterForm.reset();
+        this.isLoading = false;
+      },
       errorResponse => {
         this.validationErrors = errorResponse.error;
         alert('Something went wrong!');
+        this.isLoading = false;
       });
   }
 

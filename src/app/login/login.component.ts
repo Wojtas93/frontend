@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {User} from '../model/user.model';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {HotelUserService} from '../services/hotel-user.service';
+import {Subject} from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -11,6 +12,8 @@ import {HotelUserService} from '../services/hotel-user.service';
 export class LoginComponent implements OnInit {
   userLoginForm: FormGroup;
   errorBoolean: boolean;
+  isLoading = false;
+  user = new Subject<User>();
 
   constructor(private  httpService: HotelUserService) {
   }
@@ -27,10 +30,13 @@ export class LoginComponent implements OnInit {
       username: this.userLoginForm.value.username,
       password: this.userLoginForm.value.password
     };
-
-    this.httpService.getUserByLoginAndPassword(user).subscribe(() => {
+    this.isLoading = true;
+    this.httpService.getUserByLoginAndPassword(user).subscribe((responseUser) => {
         this.errorBoolean = false;
         alert('User logged');
+        this.user.next(responseUser);
+        this.isLoading = false;
+        this.userLoginForm.reset();
       },
       () => {
         this.errorBoolean = true;

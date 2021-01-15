@@ -134,6 +134,7 @@
             <button type="submit" class="btn btn-primary" [disabled]="!formIsValid()">
               Sign In
             </button>
+            <span class="ml-3" *ngIf="isLoading"><app-loading-spinner></app-loading-spinner></span>
           </div>
         </div>
       </form>
