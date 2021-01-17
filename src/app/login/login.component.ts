@@ -3,6 +3,7 @@ import {User} from '../model/user.model';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {HotelUserService} from '../services/hotel-user.service';
 import {Subject} from 'rxjs';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +16,8 @@ export class LoginComponent implements OnInit {
   isLoading = false;
   user = new Subject<User>();
 
-  constructor(private  httpService: HotelUserService) {
+  constructor(private  httpService: HotelUserService,
+              private  router: Router) {
   }
 
   ngOnInit(): void {
@@ -33,10 +35,9 @@ export class LoginComponent implements OnInit {
     this.isLoading = true;
     this.httpService.getUserByLoginAndPassword(user).subscribe((responseUser) => {
         this.errorBoolean = false;
-        alert('User logged');
         this.user.next(responseUser);
         this.isLoading = false;
-        this.userLoginForm.reset();
+        this.router.navigate(['/home']).then(r => alert('Zalogowano'));
       },
       () => {
         this.errorBoolean = true;

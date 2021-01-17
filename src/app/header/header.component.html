@@ -1,11 +1,18 @@
 <nav class="navbar navbar-dark bg-dark navbar-expand" role="navigation">
   <div class="container-fluid">
     <a href="#" class="navbar-brand p-2">Hotel</a>
+    <div class="dropdown ml-auto mr-md-5">
+      <div class="dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Menu
+      </div>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <a class="dropdown-item" href="#">Logout</a>
+        <a class="dropdown-item" href="#">My profile</a>
+        <a class="dropdown-item" href="#">My reservations</a>
+      </div>
+    </div>
     <div class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
-        <li class="nav-item">
-          <a routerLink="/home" class="nav-link"><fa-icon [icon]="faHome" class="mr-2"></fa-icon>Home</a>
-        </li>
         <li class="nav-item">
           <a routerLink="/booking" class="nav-link"><fa-icon [icon]="faCalendarDay" class="mr-2"></fa-icon>Booking</a>
         </li>
