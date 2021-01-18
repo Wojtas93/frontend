@@ -1,16 +1,6 @@
 <nav class="navbar navbar-dark bg-dark navbar-expand" role="navigation">
   <div class="container-fluid">
     <a href="#" class="navbar-brand p-2">Hotel</a>
-    <div class="dropdown ml-auto mr-md-5">
-      <div class="dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Menu
-      </div>
-      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <a class="dropdown-item" href="#">Logout</a>
-        <a class="dropdown-item" href="#">My profile</a>
-        <a class="dropdown-item" href="#">My reservations</a>
-      </div>
-    </div>
     <div class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
         <li class="nav-item">
@@ -23,6 +13,16 @@
           <a routerLink="/register" class="nav-link"><fa-icon [icon]="faUserPlus" class="mr-2"></fa-icon>Register</a>
         </li>
       </ul>
+      <div class="dropdown ml-3">
+        <div class="dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Menu
+        </div>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item" href="#">Logout</a>
+          <a class="dropdown-item" href="#">My profile</a>
+          <a class="dropdown-item" href="#">My reservations</a>
+        </div>
+      </div>
     </div>
   </div>
 </nav>
