@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {faHome, faCalendarDay, faSignInAlt, faUserPlus} from '@fortawesome/free-solid-svg-icons';
+import {LoggedUserService} from '../services/logged-user.service';
+
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -10,9 +12,11 @@ export class HeaderComponent implements OnInit {
   faCalendarDay = faCalendarDay;
   faSignInAlt = faSignInAlt;
   faUserPlus = faUserPlus;
-  constructor() { }
+
+
+  constructor(private loggedService: LoggedUserService) {
+  }
 
   ngOnInit(): void {
   }
-
 }

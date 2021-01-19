@@ -13,6 +13,7 @@ import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {RoutingModule} from './modules/routing/routing.module';
 import {DatePipe} from '@angular/common';
 import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
+import { MyProfileComponent } from './my-profile/my-profile.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.compo
     RegisterComponent,
     LoginComponent,
     BookingComponent,
-    LoadingSpinnerComponent
+    LoadingSpinnerComponent,
+    MyProfileComponent
   ],
   imports: [
     BrowserModule,

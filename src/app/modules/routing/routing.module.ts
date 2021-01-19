@@ -6,6 +6,7 @@ import {ContactComponent} from '../../contact/contact.component';
 import {BookingComponent} from '../../booking/booking.component';
 import {RegisterComponent} from '../../register/register.component';
 import {LoginComponent} from '../../login/login.component';
+import  {MyProfileComponent} from '../../my-profile/my-profile.component';
 
 const routes: Routes = [{
   component: HomeComponent,
@@ -14,6 +15,10 @@ const routes: Routes = [{
 }, {
   path: '',
   redirectTo: '/home',
+  pathMatch: 'full'
+}, {
+  component: MyProfileComponent,
+  path: 'my-profile',
   pathMatch: 'full'
 }, {
   component: ContactComponent,
