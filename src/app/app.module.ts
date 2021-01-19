@@ -12,6 +12,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {RoutingModule} from './modules/routing/routing.module';
 import {DatePipe} from '@angular/common';
+import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import {DatePipe} from '@angular/common';
     ContactComponent,
     RegisterComponent,
     LoginComponent,
-    BookingComponent
+    BookingComponent,
+    LoadingSpinnerComponent
   ],
   imports: [
     BrowserModule,
