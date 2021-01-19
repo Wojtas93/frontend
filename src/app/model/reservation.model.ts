@@ -2,11 +2,11 @@ import {User} from './user.model';
 
 export class Reservation {
   id?: number;
-  room: string;
+  room?: string;
   guest: User;
   startDate: number;
   endDate: number;
-  isPaid: boolean;
+  isPaid?: boolean;
 
 
   constructor(id: number, room: string, guest: User, startDate: number, endDate: number) {

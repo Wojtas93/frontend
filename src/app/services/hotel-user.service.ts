@@ -31,4 +31,8 @@ export class HotelUserService {
   deleteUser(id: number): Observable<User> {
     return this.httpClient.delete<User>(this.url + '/' + id, this.httpOptions);
   }
+
+  getUserByUsername(username: string): Observable<User> {
+    return this.httpClient.get<User>(this.url + '/' + username, this.httpOptions);
+  }
 }
