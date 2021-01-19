@@ -39,6 +39,7 @@ export class LoginComponent implements OnInit {
     this.httpService.getUserByLoginAndPassword(user).subscribe((responseUser) => {
         this.errorBoolean = false;
         this.loggedService.emitUser(responseUser);
+        this.userSub = this.loggedService.user.subscribe();
         this.isLoading = false;
         this.router.navigate(['/my-profile']).then(r => alert('Witaj ' + user.username + '!'));
       },

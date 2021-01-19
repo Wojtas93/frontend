@@ -14,7 +14,7 @@ export class HeaderComponent implements OnInit {
   faUserPlus = faUserPlus;
 
 
-  constructor(private loggedService: LoggedUserService) {
+  constructor(public loggedService: LoggedUserService) {
   }
 
   ngOnInit(): void {
