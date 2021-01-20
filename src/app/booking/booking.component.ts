@@ -3,6 +3,7 @@ import {Reservation} from '../model/reservation.model';
 import {DatePipe} from '@angular/common';
 import {HotelBookingService} from '../services/hotel-booking.service';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {User} from '../model/user.model';
 
 @Component({
   selector: 'app-booking',
@@ -23,7 +24,8 @@ export class BookingComponent implements OnInit {
     this.bookingForm = new FormGroup({
         startDate: new FormControl(null, Validators.required),
         endDate: new FormControl(null, Validators.required),
-        guest: new FormControl(null, Validators.required),
+        firstName: new FormControl(null, Validators.required),
+        lastName: new FormControl(null, Validators.required),
         isPaid: new FormControl(null, Validators.required),
         room: new FormControl(null, Validators.required),
       }
@@ -31,10 +33,14 @@ export class BookingComponent implements OnInit {
   }
 
   onSubmit(): void {
+    const guestFromForm: User = {
+      firstName: this.bookingForm.value.firstName,
+      lastName: this.bookingForm.value.lastName
+    };
     const reservation: Reservation = {
       startDate: this.bookingForm.value.startDate,
       endDate: this.bookingForm.value.endDate,
-      guest: this.bookingForm.value.guest,
+      guest: guestFromForm,
       isPaid: this.bookingForm.value.isPaid,
       room: this.bookingForm.value.room,
     };
