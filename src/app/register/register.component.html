@@ -98,6 +98,7 @@
                 Must contain at least 1 in Capital Case!
               </label>
             </div>
+
             <div>
               <label class="form-group"
                      *ngIf="userRegisterForm.controls['password'].touched"
@@ -109,6 +110,19 @@
                 Must contain at least 1 Letter in Small Case!
               </label>
             </div>
+
+            <div>
+              <label class="form-group"
+                     *ngIf="userRegisterForm.controls['password'].touched"
+                     [ngClass]="passwordHasSpecialChar()  ? 'text-success' : 'text-danger'"
+              >
+                <i class="material-icons">
+                  {{ passwordHasSpecialChar() ? 'check_circle' : 'cancel' }}
+                </i>
+                Must contain at least 1 Special Character!
+              </label>
+            </div>
+
             <div *ngIf="validationErrors.password !== null">
               <span *ngFor="let error of validationErrors.password">
                 <i class="material-icons">cancel</i> {{error}}
