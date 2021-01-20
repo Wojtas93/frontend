@@ -4,7 +4,7 @@
       <form [formGroup]="bookingForm" (ngSubmit)="onSubmit()" method="post">
         <div class="form-group">
           <label>
-            Arrival: <input type="date" class="form-control" name="startDate" id="startDate" formControlName="starDate">
+            Arrival: <input type="date" class="form-control" name="startDate" id="startDate" formControlName="startDate">
           </label>
         </div>
         <div class="form-group">
@@ -16,19 +16,20 @@
           <div>
             <label>
               First Name: <input type="text" class="form-control" name="userFirstName"
-                                 formControlName="guest.firstName">
+                                 formControlName="firstName">
             </label>
           </div>
           <div>
             <label>
-              Last Name: <input type="text" class="form-control" name="userLastName" formControlName="guest.lastName">
+              Last Name: <input type="text" class="form-control" name="userLastName" formControlName="lastName">
             </label>
           </div>
         </div>
         <div class="form-group">
-          <button type="submit" class="btn btn-primary">
-<!--                  [disabled]="!(reservationForm.controls['startDate'].touched && reservationForm.controls['endDate'].touched-->
-<!--                  && reservationForm.controls['guest.firstName'].touched && reservationForm.controls['guest.lastName'].touched)"-->
+          <button type="submit" class="btn btn-primary"
+                  [disabled]="!(bookingForm.controls['startDate'].touched &&
+                  bookingForm.controls['endDate'].touched && bookingForm.controls['guest.firstName'].touched &&
+                  !bookingForm.controls['guest.lastName'].pristine)">
           Submit
           </button>
         </div>

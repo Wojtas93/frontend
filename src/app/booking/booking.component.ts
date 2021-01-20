@@ -10,7 +10,6 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
   styleUrls: ['./booking.component.css']
 })
 export class BookingComponent implements OnInit {
-  reservationForm: FormGroup;
   datePipeString: string;
   bookingForm: FormGroup;
   errorBoolean: boolean;
@@ -21,7 +20,7 @@ export class BookingComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.reservationForm = new FormGroup({
+    this.bookingForm = new FormGroup({
         startDate: new FormControl(null, Validators.required),
         endDate: new FormControl(null, Validators.required),
         guest: new FormControl(null, Validators.required),
@@ -33,17 +32,17 @@ export class BookingComponent implements OnInit {
 
   onSubmit(): void {
     const reservation: Reservation = {
-      startDate: this.reservationForm.value.startDate,
-      endDate: this.reservationForm.value.endDate,
-      guest: this.reservationForm.value.guest,
-      isPaid: this.reservationForm.value.isPaid,
-      room: this.reservationForm.value.room,
+      startDate: this.bookingForm.value.startDate,
+      endDate: this.bookingForm.value.endDate,
+      guest: this.bookingForm.value.guest,
+      isPaid: this.bookingForm.value.isPaid,
+      room: this.bookingForm.value.room,
     };
 
     this.httpService.addReservation(reservation)
-      .subscribe((responseUser) => {
+      .subscribe((response) => {
           this.errorBoolean = false;
-          alert('Thank you for reservation!');
+          alert('Thank you for reservation! ' + response);
         },
         () => {
           this.errorBoolean = true;
