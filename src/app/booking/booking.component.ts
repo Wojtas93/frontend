@@ -43,6 +43,7 @@ export class BookingComponent implements OnInit {
     this.httpService.addReservation(reservation)
       .subscribe((responseUser) => {
           this.errorBoolean = false;
+          alert('Thank you for reservation!');
         },
         () => {
           this.errorBoolean = true;
