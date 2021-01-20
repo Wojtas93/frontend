@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {HotelBookingService} from '../services/hotel-booking.service';
-import {Reservation} from "../model/reservation.model";
-import {LoggedUserService} from "../services/logged-user.service";
-import {User} from "../model/user.model";
-import {Subject} from "rxjs";
+import {Reservation} from '../model/reservation.model';
+import {LoggedUserService} from '../services/logged-user.service';
+import {User} from '../model/user.model';
+import {Subject} from 'rxjs';
 
 @Component({
   selector: 'app-my-reservations',

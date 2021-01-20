@@ -11,8 +11,8 @@
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let reservation of reservations;">
-    <td>{{reservations.findIndex(reservation)}}</td>
+  <tr *ngFor="let reservation of reservations; let index">
+    <td>{{index}}</td>
     <td>{{reservation.startDate}}</td>
     <td>{{reservation.endDate}}</td>
     <td>{{reservation.room.numPeople}}</td>
