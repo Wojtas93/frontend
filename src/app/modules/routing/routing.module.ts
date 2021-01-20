@@ -7,6 +7,7 @@ import {BookingComponent} from '../../booking/booking.component';
 import {RegisterComponent} from '../../register/register.component';
 import {LoginComponent} from '../../login/login.component';
 import {MyProfileComponent} from '../../my-profile/my-profile.component';
+import {MyReservationsComponent} from '../../my-reservations/my-reservations.component';
 
 const routes: Routes = [{
   component: HomeComponent,
@@ -19,6 +20,10 @@ const routes: Routes = [{
 }, {
   component: MyProfileComponent,
   path: 'my-profile',
+  pathMatch: 'full'
+}, {
+  component: MyReservationsComponent,
+  path: 'my-reservations',
   pathMatch: 'full'
 }, {
   component: ContactComponent,

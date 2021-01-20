@@ -1,0 +1,22 @@
+<h1>Twoje Rezerwacje</h1>
+
+<table>
+  <thead>
+  <tr>
+    <td></td>
+    <td>Data przyjazdu</td>
+    <td>Data wyjazdu</td>
+    <td>Liczba osob</td>
+    <td>Przedplata</td>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let reservation of reservations;">
+    <td>{{reservations.findIndex(reservation)}}</td>
+    <td>{{reservation.startDate}}</td>
+    <td>{{reservation.endDate}}</td>
+    <td>{{reservation.room.numPeople}}</td>
+    <td>{{reservation.isPaid}}</td>
+  </tr>
+  </tbody>
+</table>

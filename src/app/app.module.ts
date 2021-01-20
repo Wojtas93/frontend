@@ -14,6 +14,7 @@ import {RoutingModule} from './modules/routing/routing.module';
 import {DatePipe} from '@angular/common';
 import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
 import { MyProfileComponent } from './my-profile/my-profile.component';
+import { MyReservationsComponent } from './my-reservations/my-reservations.component';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { MyProfileComponent } from './my-profile/my-profile.component';
     LoginComponent,
     BookingComponent,
     LoadingSpinnerComponent,
-    MyProfileComponent
+    MyProfileComponent,
+    MyReservationsComponent
   ],
   imports: [
     BrowserModule,

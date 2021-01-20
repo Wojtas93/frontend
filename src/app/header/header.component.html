@@ -13,14 +13,14 @@
           <a routerLink="/register" class="nav-link"><fa-icon [icon]="faUserPlus" class="mr-2" *ngIf="loggedService.isLogged()"></fa-icon>Register</a>
         </li>
       </ul>
-      <div class="dropdown ml-3">
+      <div class="dropdown ml-3" *ngIf="loggedService.isLogged()">
         <div class="dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Menu
         </div>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
           <a class="dropdown-item" href="#">Logout</a>
           <a class="dropdown-item" href="/my-profile">My profile</a>
-          <a class="dropdown-item" href="#">My reservations</a>
+          <a class="dropdown-item" href="/my-reservations">My reservations</a>
         </div>
       </div>
     </div>
