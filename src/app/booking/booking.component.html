@@ -1,36 +1,35 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-12">
-      <form #bookingForm="ngForm" (ngSubmit)="onSubmit()" method="post">
+      <form [formGroup]="bookingForm" ]="ngForm" (ngSubmit)="onSubmit()" method="post">
         <div class="form-group">
           <label>
-            Arrival: <input type="date" class="form-control" name="startDate" id="startDate"
-                            [(ngModel)]="reservation.startDate" #startDate="ngModel" [min]="datePipeString" required>
+            Arrival: <input type="date" class="form-control" name="startDate" id="startDate" formControlName="starDate">
           </label>
         </div>
         <div class="form-group">
           <label>
-            Departure: <input type="date" class="form-control" name="endDate" id="endDate"
-                              [(ngModel)]="reservation.startDate" #endDate="ngModel" [min]="datePipeString" required>
+            Departure: <input type="date" class="form-control" name="endDate" id="endDate" formControlName="endDate">
           </label>
         </div>
         <div class="form-group">
           <div>
             <label>
               First Name: <input type="text" class="form-control" name="userFirstName"
-                                 [(ngModel)]="reservation.guest.firstName" #userFirstName="ngModel" required>
+                                 formControlName="guest.firstName">
             </label>
           </div>
           <div>
             <label>
-              Last Name: <input type="text" class="form-control" name="userLastName"
-                                [(ngModel)]="reservation.guest.lastName" #userLastName="ngModel" required>
+              Last Name: <input type="text" class="form-control" name="userLastName" formControlName="guest.lastName">
             </label>
           </div>
         </div>
         <div class="form-group">
           <button type="submit" class="btn btn-primary"
-                  [disabled]="!startDate.valid || !endDate.valid || !userFirstName.valid || !userLastName.valid">Submit
+                  [disabled]="!(reservationForm.controls['startDate'].touched && reservationForm.controls['endDate'].touched
+                  && reservationForm.controls['guest.firstName'].touched && reservationForm.controls['guest.lastName'].touched)">
+            Submit
           </button>
         </div>
       </form>
