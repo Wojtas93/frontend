@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {User} from '../model/user.model';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {HotelUserService} from '../services/hotel-user.service';
-import {Subject, Subscription} from 'rxjs';
 import {Router} from '@angular/router';
 import {LoggedUserService} from '../services/logged-user.service';
 
@@ -16,7 +15,6 @@ export class LoginComponent implements OnInit {
   userLoginForm: FormGroup;
   errorBoolean: boolean;
   isLoading = false;
-  userSub: Subscription;
 
   constructor(private  httpService: HotelUserService,
               private  router: Router,
@@ -39,9 +37,8 @@ export class LoginComponent implements OnInit {
     this.httpService.getUserByLoginAndPassword(user).subscribe((responseUser) => {
         this.errorBoolean = false;
         this.loggedService.emitUser(responseUser);
-        this.userSub = this.loggedService.user.subscribe();
         this.isLoading = false;
-        this.router.navigate(['/my-profile']).then(r => alert('Witaj ' + user.username + '!'));
+        this.router.navigate(['/my-profile']).then(() => alert('Witaj ' + user.username + '!'));
       },
       () => {
         this.errorBoolean = true;
