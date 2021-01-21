@@ -29,4 +29,9 @@ export class LoggedUserService {
       });
   }
 
+  logout(): void {
+    this.user.next(null);
+    this.router.navigate(['/home']).then(() => alert('Logged out'));
+  }
+
 }
