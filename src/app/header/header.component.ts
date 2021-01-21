@@ -1,5 +1,5 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {faCalendarDay, faSignInAlt, faUserPlus} from '@fortawesome/free-solid-svg-icons';
+import {faCalendarDay, faHeadphones, faPhoneAlt, faSignInAlt, faUserPlus} from '@fortawesome/free-solid-svg-icons';
 import {LoggedUserService} from '../services/logged-user.service';
 import {Subscription} from 'rxjs';
 
@@ -12,6 +12,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   faCalendarDay = faCalendarDay;
   faSignInAlt = faSignInAlt;
   faUserPlus = faUserPlus;
+  faHeadphones = faPhoneAlt;
   userSub: Subscription;
   isAuthenticated: boolean;
 

@@ -12,6 +12,9 @@
         <li class="nav-item" *ngIf="!isAuthenticated">
           <a routerLink="/register" class="nav-link"><fa-icon [icon]="faUserPlus" class="mr-2"></fa-icon>Register</a>
         </li>
+        <li class="nav-item" *ngIf="!isAuthenticated">
+          <a routerLink="/contact" class="nav-link"><fa-icon [icon]="faHeadphones" class="mr-2"></fa-icon>Contact</a>
+        </li>
       </ul>
       <div class="dropdown ml-3" *ngIf="isAuthenticated">
         <div class="dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
