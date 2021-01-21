@@ -6,21 +6,21 @@
         <li class="nav-item">
           <a routerLink="/booking" class="nav-link"><fa-icon [icon]="faCalendarDay" class="mr-2"></fa-icon>Booking</a>
         </li>
-        <li class="nav-item">
-          <a routerLink="/login" class="nav-link"><fa-icon [icon]="faSignInAlt" class="mr-2" *ngIf="loggedService.isLogged()"></fa-icon>Log In</a>
+        <li class="nav-item" *ngIf="!isAuthenticated">
+          <a routerLink="/login" class="nav-link"><fa-icon [icon]="faSignInAlt" class="mr-2"></fa-icon>Log In</a>
         </li>
-        <li class="nav-item">
-          <a routerLink="/register" class="nav-link"><fa-icon [icon]="faUserPlus" class="mr-2" *ngIf="loggedService.isLogged()"></fa-icon>Register</a>
+        <li class="nav-item" *ngIf="!isAuthenticated">
+          <a routerLink="/register" class="nav-link"><fa-icon [icon]="faUserPlus" class="mr-2"></fa-icon>Register</a>
         </li>
       </ul>
-      <div class="dropdown ml-3" *ngIf="loggedService.isLogged()">
+      <div class="dropdown ml-3" *ngIf="isAuthenticated">
         <div class="dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Menu
         </div>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
           <a class="dropdown-item" href="#">Logout</a>
-          <a class="dropdown-item" href="/my-profile">My profile</a>
-          <a class="dropdown-item" href="/my-reservations">My reservations</a>
+          <a class="dropdown-item" routerLink="/my-profile">My profile</a>
+          <a class="dropdown-item" routerLink="/my-reservations">My reservations</a>
         </div>
       </div>
     </div>

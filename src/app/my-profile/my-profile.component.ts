@@ -1,7 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {User} from '../model/user.model';
-import {LoggedUserService} from '../services/logged-user.service';
-import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-my-profile',
@@ -9,8 +6,6 @@ import {Subscription} from 'rxjs';
   styleUrls: ['./my-profile.component.css']
 })
 export class MyProfileComponent implements OnInit {
-  user: Subscription;
-
   constructor() {
   }
 

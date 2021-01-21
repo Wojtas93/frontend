@@ -23,7 +23,7 @@ export class HotelBookingService {
   }
 
   addReservation(reservation: Reservation): Observable<Reservation> {
-    return this.httpClient.post<Reservation>(this.url, reservation);
+    return this.httpClient.post<Reservation>(this.url + '/post', reservation);
   }
 
   deleteReservation(id: number): Observable<Reservation> {

@@ -3,8 +3,7 @@ export class Guest {
   firstName: string;
   lastName: string;
 
-  constructor(id: number, firstName: string, lastName: string) {
-    this.id = id;
+  constructor(firstName: string, lastName: string) {
     this.firstName = firstName;
     this.lastName = lastName;
   }

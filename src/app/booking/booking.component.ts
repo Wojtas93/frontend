@@ -3,6 +3,7 @@ import {Reservation} from '../model/reservation.model';
 import {DatePipe} from '@angular/common';
 import {HotelBookingService} from '../services/hotel-booking.service';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {User} from '../model/user.model';
 
 @Component({
   selector: 'app-booking',
@@ -10,7 +11,6 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
   styleUrls: ['./booking.component.css']
 })
 export class BookingComponent implements OnInit {
-  reservationForm: FormGroup;
   datePipeString: string;
   bookingForm: FormGroup;
   errorBoolean: boolean;
@@ -21,10 +21,11 @@ export class BookingComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.reservationForm = new FormGroup({
+    this.bookingForm = new FormGroup({
         startDate: new FormControl(null, Validators.required),
         endDate: new FormControl(null, Validators.required),
-        guest: new FormControl(null, Validators.required),
+        firstName: new FormControl(null, Validators.required),
+        lastName: new FormControl(null, Validators.required),
         isPaid: new FormControl(null, Validators.required),
         room: new FormControl(null, Validators.required),
       }
@@ -32,18 +33,22 @@ export class BookingComponent implements OnInit {
   }
 
   onSubmit(): void {
+    const guestFromForm: User = {
+      firstName: this.bookingForm.value.firstName,
+      lastName: this.bookingForm.value.lastName
+    };
     const reservation: Reservation = {
-      startDate: this.reservationForm.value.startDate,
-      endDate: this.reservationForm.value.endDate,
-      guest: this.reservationForm.value.guest,
-      isPaid: this.reservationForm.value.isPaid,
-      room: this.reservationForm.value.room,
+      startDate: this.bookingForm.value.startDate,
+      endDate: this.bookingForm.value.endDate,
+      guest: guestFromForm,
+      isPaid: this.bookingForm.value.isPaid,
+      room: this.bookingForm.value.room,
     };
 
     this.httpService.addReservation(reservation)
-      .subscribe((responseUser) => {
+      .subscribe((response) => {
           this.errorBoolean = false;
-          alert('Thank you for reservation!');
+          alert('Thank you for reservation! ' + response);
         },
         () => {
           this.errorBoolean = true;
