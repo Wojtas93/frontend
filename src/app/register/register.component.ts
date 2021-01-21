@@ -33,6 +33,7 @@ export class RegisterComponent implements OnInit {
         CustomValidators.patternValidator(/.*\d.*/, {hasNumber: true}),
         CustomValidators.patternValidator(/.*[A-Z].*/, {hasCapitalCase: true}),
         CustomValidators.patternValidator(/.*[a-z].*/, {hasSmallCase: true}),
+        CustomValidators.patternValidator(/[!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~]/, {hasSpecialChar: true}),
         CustomValidators.patternValidator(/^$/, {isNotEmpty: true})
       ])),
       passwordConfirm: new FormControl(null, Validators.compose([
@@ -83,6 +84,11 @@ export class RegisterComponent implements OnInit {
   passwordHasSmallLetter(): boolean {
     return this.userRegisterForm.controls.password.hasError('isNotEmpty') &&
       !this.userRegisterForm.controls.password.hasError('hasSmallCase');
+  }
+
+  passwordHasSpecialChar(): boolean {
+    return this.userRegisterForm.controls.password.hasError('isNotEmpty') &&
+      !this.userRegisterForm.controls.password.hasError('hasSpecialChar');
   }
 
   passwordAreIdentical(): boolean {
