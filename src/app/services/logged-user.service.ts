@@ -15,13 +15,13 @@ export class LoggedUserService {
               private  router: Router) {
   }
 
-  logInUser(user: User, navigateTo: string, isLoading?: boolean, error?: boolean): void {
+  logInUser(givenUser: User, navigateTo: string, isLoading?: boolean, error?: boolean): void {
     isLoading = true;
-    this.httpService.getUserByLoginAndPassword(user).subscribe((responseUser) => {
+    this.httpService.getUserByLoginAndPassword(givenUser).subscribe((responseUser) => {
         error = false;
         this.user.next(responseUser);
         isLoading = false;
-        this.router.navigate([navigateTo]).then(() => alert('Witaj ' + user.username + '!'));
+        this.router.navigate([navigateTo]).then(() => alert('Witaj ' + givenUser.username + '!'));
       },
       () => {
         error = true;
