@@ -11,36 +11,32 @@ import {MyReservationsComponent} from '../../my-reservations/my-reservations.com
 
 const routes: Routes = [{
   component: HomeComponent,
-  path: 'home',
-  pathMatch: 'full'
+  path: 'home'
 }, {
   path: '',
   redirectTo: '/home',
   pathMatch: 'full'
 }, {
   component: MyProfileComponent,
-  path: 'my-profile',
-  pathMatch: 'full'
+  path: 'my-profile'
 }, {
   component: MyReservationsComponent,
-  path: 'my-reservations',
-  pathMatch: 'full'
+  path: 'my-reservations'
 }, {
   component: ContactComponent,
-  path: 'contact',
-  pathMatch: 'full'
+  path: 'contact'
 }, {
   component: BookingComponent,
-  path: 'booking',
-  pathMatch: 'full'
+  path: 'booking'
 }, {
   component: RegisterComponent,
-  path: 'register',
-  pathMatch: 'full'
+  path: 'register'
 }, {
   component: LoginComponent,
-  path: 'login',
-  pathMatch: 'full'
+  path: 'login'
+}, {
+  component: ContactComponent,
+  path: 'contact'
 }];
 
 

@@ -20,7 +20,7 @@ export class MyReservationsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.reservations = this.httpService.getAllByUsername(this.userLogged.username);
+    // this.reservations = this.httpService.getAllByUsername(this.userLogged.username);
   }
 
 }
